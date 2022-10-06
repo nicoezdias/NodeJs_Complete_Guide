@@ -1,0 +1,11 @@
+# config
+.vscode
+
+# dependencies
+node_modules
+
+# misc
+mesage.txt
+.DS_Store
+.env
+.db
