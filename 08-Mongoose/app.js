@@ -1,14 +1,16 @@
 const path = require('path');
-const dotenv = requiere('dotenv');
+const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const errorController = require('./controllers/error');
-const mongoConnect = require('./db/mongodbConfig').mongoConnect;
 const User = require('./models/user');
 const adminRoutes = require('./routes/admin.routes');
 const shopRoutes = require('./routes/shop.routes');
 
 const app = express();
+mongoose.set('strictQuery', false);
 dotenv.config();
 const PORT = process.env.PORT || 4000;
 
@@ -19,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-	User.findById('63e43470d2c8987044dd92f1')
+	User.findById('63e5829718731e218ccf65c7')
 		.then((user) => {
-			req.user = new User(user.name, user.email, user.cart, user._id);
+			req.user = user;
 			next();
 		})
 		.catch((err) => console.log(err));
@@ -32,6 +34,23 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-	app.listen(PORT);
-});
+mongoose
+	.connect(process.env.DB_URL)
+	.then((result) => {
+		User.findOne().then((user) => {
+			if (!user) {
+				const user = new User({
+					name: 'Max',
+					email: 'max@test.com',
+					cart: {
+						items: [],
+					},
+				});
+				user.save();
+			}
+		});
+		app.listen(PORT);
+	})
+	.catch((err) => {
+		console.log(err);
+	});

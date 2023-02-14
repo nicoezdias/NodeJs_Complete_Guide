@@ -12,7 +12,8 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"nodemon": "^2.0.20"
+		"nodemon": "^2.0.20",
+		"dotenv": "^16.0.3"
 	},
 	"dependencies": {
 		"body-parser": "^1.20.1",
