@@ -3,7 +3,7 @@
 
 # dependencies
 node_modules
-package-locck.json
+package-lock.json
 
 # misc
 mesage.txt
