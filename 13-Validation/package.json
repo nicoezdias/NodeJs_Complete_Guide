@@ -1,5 +1,5 @@
 {
-	"name": "advanced",
+	"name": "validation",
 	"version": "1.0.0",
 	"description": "",
 	"main": "app.js",
@@ -24,6 +24,7 @@
 		"express": "^4.18.1",
 		"express-handlebars": "^6.0.6",
 		"express-session": "^1.17.3",
+		"express-validator": "^6.15.0",
 		"mongodb": "^5.0.1",
 		"mongoose": "^6.9.1",
 		"mysql2": "^3.1.0",
