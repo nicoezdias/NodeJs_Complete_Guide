@@ -15,6 +15,7 @@ const adminRoutes = require('./routes/admin.routes');
 const shopRoutes = require('./routes/shop.routes');
 const authRoutes = require('./routes/auth.routes');
 const app = express();
+dotenv.config();
 const PORT = process.env.PORT || 4000;
 const store = new MongoDBStore({
 	uri: process.env.DB_URL,
