@@ -107,7 +107,9 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(process.env.DB_URL)
-	.then((result) => {})
+	.then((result) => {
+		app.listen(PORT);
+	})
 	.catch((err) => {
 		console.log(err);
 	});
