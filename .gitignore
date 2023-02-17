@@ -5,7 +5,9 @@
 node_modules
 package-lock.json
 
-# misc
+# mix
+images
+data
 mesage.txt
 .DS_Store
 .env
